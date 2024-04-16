@@ -20,6 +20,7 @@ export default function App() {
         onChangeText={setUserId}
         value={userId}
       />
+      
       <Text style={styles.text}>비밀번호</Text>
       <TextInput
         style={[styles.input, styles.roundedInput]}
@@ -42,13 +43,16 @@ export default function App() {
         onChangeText={setPhoneNumber}
         value={phoneNumber}
       />
+      <View style={{ marginTop: 10, width: '50%', alignSelf: 'center'}}>
       <Button
   title="회원가입"
   onPress={() => {
     setModalVisible(true);
     console.log('회원가입 로직 처리');
   }}
+  
 />
+</View>
       
       </View>
       <Modal
@@ -82,6 +86,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+   
   },
   title: {
     fontSize: 24,
@@ -95,26 +100,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0', // 입력 필드와 버튼을 감싸는 View의 배경색을 연한 회색으로 변경
     borderRadius: 20, // 입력 필드와 버튼을 감싸는 View의 모서리를 둥글게 만듭니다.
     padding: 20, // 내부 여백 추가
-    
-    width: '80%'
+    width: '80%',
   },
   input: {
     height: 40,
-    margin: 12,
+    margin: 8,
     borderWidth: 1,
     padding: 10,
     width: '80%',
     borderColor: '#fff',
     backgroundColor: '#fff',
+
   },
   text: {
     fontWeight: 'bold',
     paddingLeft: 15,
-    
   },
   buttonSignUp: {
-    
+    width: '60%',
   },
+  
   
   //modal
   centeredView: {
