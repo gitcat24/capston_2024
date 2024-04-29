@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Modal, Pressable} from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, Modal, Pressable, TouchableOpacity} from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default function App() {
@@ -7,20 +7,20 @@ export default function App() {
   const [password, setPassword] = useState('');
   const [department, setDepartment] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-   const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View style={styles.container }>
       <Text style={styles.title}>회원가입</Text>
       <View style={styles.inputContainer}>
-        <Text style={styles.text}>아이디</Text>
+      <Text style={styles.text}>아이디</Text>
       <TextInput
         style={[styles.input, styles.roundedInput]}
         placeholder="아이디를 입력하세요"
         onChangeText={setUserId}
         value={userId}
       />
-      
+      {/* 아이디 중복확인 버튼 */}
       <Text style={styles.text}>비밀번호</Text>
       <TextInput
         style={[styles.input, styles.roundedInput]}
@@ -43,15 +43,16 @@ export default function App() {
         onChangeText={setPhoneNumber}
         value={phoneNumber}
       />
-      <View style={{ marginTop: 10, width: '50%', alignSelf: 'center'}}>
-      <Button
-  title="회원가입"
-  onPress={() => {
-    setModalVisible(true);
-    console.log('회원가입 로직 처리');
-  }}
-  
-/>
+      <View style={{ marginTop: 10, width: '80%', alignSelf: 'center'}}>
+      <TouchableOpacity
+            style={styles.touchableButton}
+            onPress={() => {
+              setModalVisible(true);
+              console.log('회원가입 로직 처리');
+            }}
+          >
+       <Text style={styles.touchableButtonText}>회원가입</Text>{/*버튼의 자체적인 기본 스타일덕분에 모양이 바뀌지 않는 문제가 발생해 touchableOpatcitiy와 text를 이용해 구현*/}
+  </TouchableOpacity>
 </View>
       
       </View>
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     backgroundColor: '#f0f0f0', // 입력 필드와 버튼을 감싸는 View의 배경색을 연한 회색으로 변경
     borderRadius: 20, // 입력 필드와 버튼을 감싸는 View의 모서리를 둥글게 만듭니다.
-    padding: 20, // 내부 여백 추가
+    padding: 30, // 내부 여백 추가
     width: '80%',
   },
   input: {
@@ -107,20 +108,25 @@ const styles = StyleSheet.create({
     margin: 8,
     borderWidth: 1,
     padding: 10,
-    width: '80%',
+    width: '90%',
     borderColor: '#fff',
     backgroundColor: '#fff',
-
   },
   text: {
     fontWeight: 'bold',
     paddingLeft: 15,
   },
-  buttonSignUp: {
-    width: '60%',
+  // TouchableOpacity 스타일 추가
+  touchableButton: {
+    alignItems: 'center',
+    backgroundColor: '#2196F3', // 버튼 배경색
+    padding: 10,
+    borderRadius: 10, // 여기에서 버튼의 borderRadius 설정
   },
-  
-  
+  touchableButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
   //modal
   centeredView: {
     flex: 1,
