@@ -1,6 +1,3 @@
-const path = require('path');
-const fs = require('fs');
-const url = require('url');
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
@@ -10,7 +7,7 @@ const port = 3000;
 
 app.get('/notices', async (req, res) => {
   try {
-    const response = await axios.get('https://www.syu.ac.kr/cse/community/notice/'); //x
+    const response = await axios.get('https://www.syu.ac.kr/cse/community/notice/');
     const $ = cheerio.load(response.data);
 
     const notices = [];
@@ -22,7 +19,7 @@ app.get('/notices', async (req, res) => {
     });
 
     const page = parseInt(req.query.page) || 1;
-    const itemsPerPage = 15; // 한 페이지에 표시할 공지사항 수
+    const itemsPerPage = 10; 
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const paginatedNotices = notices.slice(startIndex, endIndex);
@@ -38,7 +35,7 @@ app.get('/notices', async (req, res) => {
 
 app.get('/notice/:id', async (req, res) => {
   try {
-    const response = await axios.get('https://www.syu.ac.kr/cse/community/notice/'); //x
+    const response = await axios.get('https://www.syu.ac.kr/cse/community/notice/');
     const $ = cheerio.load(response.data);
 
     const notice = $(`div.notice-list-item:nth-child(${req.params.id})`);
