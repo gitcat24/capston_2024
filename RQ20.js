@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TextInput, Button, Picker, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TextInput, Button, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { Picker } from '@react-native-picker/picker';
 
 const NoticeBoard = () => {
   const [notices, setNotices] = useState([]);
@@ -16,7 +17,7 @@ const NoticeBoard = () => {
 
   const fetchNotices = async () => {
     try {
-      const response = await axios.get(`/api/notices?page=${currentPage}`);
+      const response = await axios.get(`http://your-server-ip:3000/notices?page=${currentPage}`);
       setNotices(response.data.notices);
       setAllNotices(response.data.notices);
     } catch (error) {
@@ -73,7 +74,6 @@ const NoticeBoard = () => {
         <View style={styles.noticeDetailContainer}>
           <Text style={styles.noticeDetailTitle}>{selectedNotice.title}</Text>
           <Text style={[styles.noticeDetailContent, { borderWidth: 1, borderColor: '#ccc', padding: 10 }]}>{selectedNotice.content}</Text>
-          <Text style={styles.noticeDetailTestText}>테스트 내용입니다. 웹 스크래핑 적용 시 삭제되어야합니다.</Text>
           <Button title="목록으로 돌아가기" onPress={handleBackToList} />
         </View>
       ) : (
@@ -174,9 +174,6 @@ const styles = StyleSheet.create({
   noticeDetailContent: {
     fontSize: 18,
     lineHeight: 1.5
-  },
-  noticeDetailTestText: {
-    marginTop: 10
   }
 });
 
