@@ -1,0 +1,2 @@
+API_URL=http://localhost:3001
+OPENAI_API_KEY=sk-proj-AIrJRbxDnzU1eiNeWi99T3BlbkFJ0RLwH28Lwsnkho2nPtfM
